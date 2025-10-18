@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import L from 'leaflet';
+import L, { marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import sheepIcon from '@/assets/sheep-icon.jpg';
 
@@ -90,7 +90,33 @@ export default {
         } else {
           console.warn(`No moves found for animal: ${animal.rfid}`); // Warn if no moves are found
         }
+
+        // Contact tracing for the  healthy animals
+        if (this.animals.length > 1) {
+          if (animal.healthStatus != 'sick') {
+
+            this.animals.forEach((anim) => {
+              if (anim.rfid != animal.rfid && anim.healthStatus == 'sick' && this.getDistance(animal, anim) < 1) {
+                var circle = L.circle(marker.getLatLng(), {
+                  radius: 1,
+                  color: 'red',
+                  fillColor: 'transparent',
+                  fillOpacity: 0,
+                  weight: 3,
+                  opacity: 0.8
+                }).addTo(this.map)
+                this.markers.push(circle)
+              }
+            })
+          }
+
+        }
+
       });
+    },
+    // using Haversine formula:
+    getDistance(a, b) {
+      return Math.round(6371000 * Math.acos(Math.cos(a.lat * Math.PI / 180) * Math.cos(b.lat * Math.PI / 180) * Math.cos((b.lng - a.lng) * Math.PI / 180) + Math.sin(a.lat * Math.PI / 180) * Math.sin(b.lat * Math.PI / 180)))
     }
   }
 };
