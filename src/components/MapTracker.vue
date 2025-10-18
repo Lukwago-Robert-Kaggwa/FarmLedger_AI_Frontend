@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import L, { marker } from 'leaflet';
+import L, { LatLng, marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import sheepIcon from '@/assets/sheep-icon.jpg';
 
@@ -71,6 +71,26 @@ export default {
               .addTo(this.map)
             this.markers.push(marker);
 
+            // Contact tracing for the  healthy animals
+            if (this.animals.length > 1) {
+              if (animal.healthStatus != 'sick') {
+
+                this.animals.forEach((anim) => {
+                  if (anim.rfid != animal.rfid && anim.healthStatus == 'sick' && this.getDistance(animal, anim) < 1) {
+                    var circle = L.circle([lat, lng], {
+                      radius: 100,
+                      color: 'red',
+                      fillColor: 'transparent',
+                      fillOpacity: 0,
+                      weight: 3,
+                      opacity: 0.8
+                    }).addTo(this.map)
+                    this.markers.push(circle)
+                  }
+                })
+              }
+            }
+
             // Check if there are at least two moves for polyline
             if (animal.moves.length > 1) {
               const lastTwoMoves = animal.moves.slice(-2); // Get last two moves
@@ -89,27 +109,6 @@ export default {
           }
         } else {
           console.warn(`No moves found for animal: ${animal.rfid}`); // Warn if no moves are found
-        }
-
-        // Contact tracing for the  healthy animals
-        if (this.animals.length > 1) {
-          if (animal.healthStatus != 'sick') {
-
-            this.animals.forEach((anim) => {
-              if (anim.rfid != animal.rfid && anim.healthStatus == 'sick' && this.getDistance(animal, anim) < 1) {
-                var circle = L.circle(marker.getLatLng(), {
-                  radius: 1,
-                  color: 'red',
-                  fillColor: 'transparent',
-                  fillOpacity: 0,
-                  weight: 3,
-                  opacity: 0.8
-                }).addTo(this.map)
-                this.markers.push(circle)
-              }
-            })
-          }
-
         }
 
       });
