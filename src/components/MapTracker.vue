@@ -78,13 +78,15 @@ export default {
                 this.animals.forEach((anim) => {
                   if (anim.rfid != animal.rfid && anim.healthStatus == 'sick' && this.getDistance(animal, anim) < 1) {
                     var circle = L.circle([lat, lng], {
-                      radius: 100,
+                      radius: 10000,
                       color: 'red',
                       fillColor: 'transparent',
                       fillOpacity: 0,
                       weight: 3,
                       opacity: 0.8
-                    }).addTo(this.map)
+                    })
+                    .bindTooltip(`Contact Alert: ${animal.rfid} near sick animal`)
+                    .addTo(this.map)
                     this.markers.push(circle)
                   }
                 })
