@@ -76,7 +76,7 @@ export default {
               if (animal.healthStatus != 'sick') {
 
                 this.animals.forEach((anim) => {
-                  if (anim.rfid != animal.rfid && anim.healthStatus == 'sick' && this.getDistance(animal, anim) < 1) {
+                  if (anim.rfid != animal.rfid && anim.healthStatus == 'sick' && this.getDistance(animal, anim) < 1000) {
                     var circle = L.circle([lat, lng], {
                       radius: 10000,
                       color: 'red',
