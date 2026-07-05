@@ -33,7 +33,7 @@
           <label for="province">Province</label>
           <input type="text" v-model="user.province" id="province" required />
 
-          <button type="submit" class="update-btn">Update Profile</button>
+          <button type="submit" class="update-btn btn btn-primary">Update Profile</button>
         </form>
         <div style="margin-top: 5px;">
           <AlertMessage v-if="alertMessage" :message="alertMessage" :type="alertType" @dismiss="alertMessage = ''" />
@@ -155,66 +155,75 @@ export default {
 <style scoped>
 .home-container {
   display: flex;
-  gap: 20px;
-  padding: 20px;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  flex-wrap: wrap;
 }
 
 .home-sidebar {
   width: 20%;
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  background-color: var(--color-surface);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
   text-align: left;
 }
 
 .home-sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .home-sidebar li {
-  padding: 10px 0;
-  font-weight: bold;
+  padding: 0.65rem var(--space-sm);
+  margin-bottom: var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
   cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.home-sidebar li:hover {
+  background-color: var(--color-primary-surface);
+  color: var(--color-primary-dark);
 }
 
 .home-sidebar li.active {
-  color: #4caf50;
+  background-color: var(--color-primary);
+  color: #fff;
 }
 
 .home-content {
-  width: 75%;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 280px;
+  background-color: var(--color-surface);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
 h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: var(--space-lg);
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+}
+
+form {
+  text-align: left;
 }
 
 form label {
   display: block;
-  margin: 10px 0 5px;
+  margin: var(--space-md) 0 var(--space-xs);
+  font-weight: 600;
 }
 
 form input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #e2e2e2;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.update-btn {
-  background-color: #28a745;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  margin-bottom: var(--space-md);
 }
 </style>

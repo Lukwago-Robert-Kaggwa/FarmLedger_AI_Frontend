@@ -1,0 +1,216 @@
+/* Global design tokens & shared utility classes for FarmLedger AI */
+
+:root {
+  /* Brand palette (agri-tech green) */
+  --color-primary: #1f6b45;
+  --color-primary-dark: #16512f;
+  --color-primary-light: #2f9e62;
+  --color-primary-surface: #e6f2ec;
+
+  /* Neutrals */
+  --color-bg: #f7f8f7;
+  --color-surface: #ffffff;
+  --color-border: #e1e5e2;
+  --color-text: #1f2a24;
+  --color-text-muted: #5b6660;
+
+  /* Semantic colors */
+  --color-danger: #d64545;
+  --color-danger-dark: #b83a3a;
+  --color-danger-surface: #f8d7da;
+  --color-success: #1f6b45;
+  --color-success-surface: #d4edda;
+  --color-info: #1f7a99;
+  --color-info-surface: #d9f1f8;
+
+  /* Typography */
+  --font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.75rem;
+  --font-size-2xl: 2.5rem;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+
+  /* Radius & shadow */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 2px 4px rgba(31, 42, 36, 0.08);
+  --shadow-md: 0 4px 12px rgba(31, 42, 36, 0.1);
+
+  --transition-fast: 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+#app {
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0.6rem 1.25rem;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  color: #fff;
+  background-color: var(--color-primary);
+}
+
+.btn:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--color-info);
+}
+
+.btn-secondary:hover {
+  background-color: #175f78;
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+}
+
+.btn-danger:hover {
+  background-color: var(--color-danger-dark);
+}
+
+.btn-disabled,
+.btn:disabled {
+  background-color: #b7bdb9;
+  color: #f1f1f1;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.btn-disabled:hover,
+.btn:disabled:hover {
+  background-color: #b7bdb9;
+  transform: none;
+}
+
+/* Cards */
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+}
+
+/* Forms */
+.form-field {
+  margin-bottom: var(--space-md);
+  text-align: left;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  transition: border-color var(--transition-fast);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 3px var(--color-primary-surface);
+}
+
+/* Status pills used across Ledger/Animals/Operations */
+.status-pill {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-pill.healthy {
+  background-color: var(--color-success-surface);
+  color: var(--color-success);
+}
+
+.status-pill.sick {
+  background-color: var(--color-danger-surface);
+  color: var(--color-danger-dark);
+}
+
+.status-pill.removed {
+  background-color: var(--color-info-surface);
+  color: var(--color-info);
+}
+
+/* Page container */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+}

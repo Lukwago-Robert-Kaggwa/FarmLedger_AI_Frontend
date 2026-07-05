@@ -1,5 +1,9 @@
 <template>
-    <div id="map" style="height: 500px;"></div>
+    <div class="map-page">
+        <div class="card map-card">
+            <div id="map" style="height: 500px;"></div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -124,5 +128,18 @@ export default {
 #map {
     height: 500px;
     width: 100%;
+}
+</style>
+
+<style scoped>
+.map-page {
+    padding: var(--space-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.map-card {
+    padding: 0;
+    overflow: hidden;
 }
 </style>

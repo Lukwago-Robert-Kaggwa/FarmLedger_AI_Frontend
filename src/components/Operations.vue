@@ -6,10 +6,10 @@
                 :class="{ 'healthy': animal.healthStatus === 'healthy', 'sick': animal.healthStatus === 'sick' }">
                 <div class="animal-info">
                     <h2>RFID: {{ animal.rfid }}</h2>
-                    <p><strong>Health Status:</strong> {{ animal.healthStatus }}</p>
+                    <p><strong>Health Status:</strong> <span class="status-pill" :class="animal.healthStatus">{{ animal.healthStatus }}</span></p>
                     <p><strong>Status Last Modified:</strong> {{ formatingDate(animal.statusLastModified) }}</p>
                     <p><strong>Current Location:</strong> {{ animal.lat }}, {{ animal.lng }}</p>
-                    <button @click="treatAnimal(animal)">Enter Treatment Details</button>
+                    <button class="btn btn-primary" @click="treatAnimal(animal)">Enter Treatment Details</button>
                 </div>
             </div>
         </div>
@@ -64,60 +64,59 @@ export default {
 
 <style scoped>
 .ledger-page {
-    padding: 20px;
-    background-color: #f4f4f9;
-    font-family: Arial, sans-serif;
+    padding: var(--space-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ledger-page h1 {
+    margin-bottom: var(--space-lg);
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
 }
 
 .animal-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: var(--space-lg);
 }
 
 .animal-card {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     text-align: left;
 }
 
 .animal-card:hover {
-    transform: scale(1.02);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .animal-card.healthy {
-    border-left: 5px solid #4caf50;
+    border-left: 5px solid var(--color-primary);
 }
 
 .animal-card.sick {
-    border-left: 5px solid #f44336;
+    border-left: 5px solid var(--color-danger);
 }
 
 .animal-info h2 {
-    margin: 0 0 10px;
-    color: #333;
+    margin: 0 0 var(--space-sm);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
 }
 
 .animal-info p {
-    margin: 5px 0;
-    font-size: 16px;
+    margin: var(--space-xs) 0;
+    font-size: var(--font-size-base);
 }
 
 .animal-info button {
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     float: right;
-}
-
-.animal-info button:hover {
-    background-color: #409243;
+    margin-top: var(--space-sm);
 }
 
 @media (max-width: 768px) {

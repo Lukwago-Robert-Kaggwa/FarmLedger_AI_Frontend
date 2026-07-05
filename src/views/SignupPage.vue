@@ -1,5 +1,5 @@
 <template>
-  <div class="signup-container">
+  <div class="signup-container card">
     <form @submit.prevent="signup">
       <h2>Sign Up</h2>
       <input type="text" v-model="username" placeholder="Username" required />
@@ -34,7 +34,7 @@
         placeholder="Confirm password"
         required
       />
-      <button type="submit">Sign Up</button>
+      <button type="submit" class="btn btn-primary">Sign Up</button>
     </form>
 
     <AlertMessage
@@ -113,12 +113,13 @@ export default {
 <style scoped>
 .signup-container {
   max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 8px;
-  background: #f5f5f5;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  height: 80vh;
+  margin: var(--space-xl) auto;
+}
+
+.signup-container h2 {
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  color: var(--color-text);
 }
 
 form {
@@ -129,20 +130,6 @@ form {
 input,
 select,
 button {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-button {
-  background-color: #4caf50;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #45a049;
+  margin: var(--space-sm) 0;
 }
 </style>

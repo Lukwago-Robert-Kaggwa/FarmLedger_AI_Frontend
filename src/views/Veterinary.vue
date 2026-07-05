@@ -1,6 +1,6 @@
 <template>
-    <div class="vet-form-container">
-        
+    <div class="vet-form-container card">
+
         <AlertMessage v-if="alertMessage" :message="alertMessage" :type="alertType" @dismiss="alertMessage = ''" />
 
         <h1>Veterinary Doctor Operation Form</h1>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <button :disabled="clickBtn" type="submit">Submit</button>
+            <button class="btn btn-primary" :disabled="clickBtn" type="submit">Submit</button>
         </form>
     </div>
 </template>
@@ -222,65 +222,42 @@ const submitForm = async () => {
 
 <style scoped>
 .vet-form-container {
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #f9f9f9;
-    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: var(--space-lg) auto;
 }
 
 .input-data {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
 .input-data>div {
-    margin: 20px;
+    margin: var(--space-md);
+    min-width: 260px;
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: 0;
+    margin-bottom: var(--space-lg);
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: var(--space-md);
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: var(--space-xs);
+    font-weight: 600;
 }
 
-input,
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-button {
-    width: 20%;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background: #4caf50;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #409243;
-}
-
-button:disabled{
-    background-color: gray;
-    cursor: not-allowed;
+.vet-form-container button[type="submit"] {
+    display: block;
+    width: 240px;
+    margin: 0 auto;
 }
 </style>

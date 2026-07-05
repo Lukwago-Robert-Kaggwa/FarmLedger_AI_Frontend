@@ -49,40 +49,50 @@ export default {
 <style scoped>
 .alert-message {
   display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.3rem;
-    margin: 0.3rem 0;
-    border-radius: 5px;
-    font-size: 1rem;
-    color: white;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-sm) 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  font-size: var(--font-size-base);
+  box-shadow: var(--shadow-sm);
 }
 
 .alert-success {
   color: #155724;
-  background-color: #d4edda;
+  background-color: var(--color-success-surface);
   border-color: #c3e6cb;
 }
 
 .alert-failure {
   color: #721c24;
-  background-color: #f8d7da;
+  background-color: var(--color-danger-surface);
   border-color: #f5c6cb;
 }
 
 .alert-info {
-  color: #f4f9fa;
-  background-color: #10c7f9;
-  border-color: #10c7f9;
+  color: #0c4a5c;
+  background-color: var(--color-info-surface);
+  border-color: #b7e4f0;
+}
+
+.alert-message p {
+  margin: 0;
 }
 
 .close-btn {
   background: none;
   border: none;
-  font-size: 16px;
+  font-size: 1.1rem;
+  line-height: 1;
   cursor: pointer;
-  color: #000;
-  margin-left: 5px;
-  float: right;
+  color: inherit;
+  opacity: 0.7;
+  margin-left: var(--space-sm);
+}
+
+.close-btn:hover {
+  opacity: 1;
 }
 </style>

@@ -1,5 +1,7 @@
 <template>
-  <div id="map" style="height: 500px;"></div>
+  <div class="card map-card">
+    <div id="map" style="height: 500px;"></div>
+  </div>
 </template>
 
 <script>
@@ -127,5 +129,12 @@ export default {
 #map {
   height: 500px;
   width: 100%;
+}
+</style>
+
+<style scoped>
+.map-card {
+  padding: 0;
+  overflow: hidden;
 }
 </style>

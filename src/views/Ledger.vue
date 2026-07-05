@@ -8,11 +8,11 @@
         <div class="animal-info">
           <h2>RFID: {{ animal.rfid }}</h2>
           <p><strong>Owner:</strong> {{ animal.userName }}</p>
-          <p><strong v-if="animal.healthStatus != 'removed'">Health Status:</strong> <strong v-else>Status:</strong> <i
-              :style="{ color: animal.healthStatus === 'healthy' ? 'green' : animal.healthStatus === 'sick' ? 'red' : 'blue' }">{{ animal.healthStatus }}</i></p>
+          <p><strong v-if="animal.healthStatus != 'removed'">Health Status:</strong> <strong v-else>Status:</strong>
+            <span class="status-pill" :class="animal.healthStatus">{{ animal.healthStatus }}</span></p>
           <p><strong>Status Last Modified:</strong> {{ formatingDate(animal.statusLastModified) }}</p>
-          <button v-show="showButton" v-if="animal.fileIds.length > 0" @click="getBlockchainFiles(animal.fileIds)">Retrieve Record</button>
-          <button style="background-color: red; cursor: not-allowed;" v-else>No Record</button>
+          <button class="btn btn-primary" v-show="showButton" v-if="animal.fileIds.length > 0" @click="getBlockchainFiles(animal.fileIds)">Retrieve Record</button>
+          <button class="btn btn-disabled" v-else>No Record</button>
         </div>
       </div>
     </div>
@@ -113,69 +113,68 @@ const fetchAllAnimalData = async () => {
 
 <style scoped>
 .ledger-page {
-  padding: 20px;
-  background-color: #f4f4f9;
-  font-family: Arial, sans-serif;
+  padding: var(--space-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ledger-page h1 {
+  margin-bottom: var(--space-lg);
+  color: var(--color-text);
+  font-size: var(--font-size-xl);
 }
 
 .animal-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: var(--space-lg);
 }
 
 .animal-card {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .animal-card:hover {
-  transform: scale(1.02);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .animal-card.healthy {
-  border-left: 5px solid #4caf50;
+  border-left: 5px solid var(--color-primary);
 }
 
 .animal-card.sick {
-  border-left: 5px solid #f44336;
+  border-left: 5px solid var(--color-danger);
 }
 
 .animal-card.removed {
-  border-left: 5px solid blue;
+  border-left: 5px solid var(--color-info);
 }
 
 .animal-info h2 {
-  margin: 0 0 10px;
-  color: #333;
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
   text-align: left;
 }
 
 .animal-info p {
-  margin: 5px 0;
-  font-size: 16px;
+  margin: var(--space-xs) 0;
+  font-size: var(--font-size-base);
   text-align: left;
 }
 
 .animal-info button {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
   float: right;
-}
-
-button:hover {
-  background-color: #45a049;
+  margin-top: var(--space-sm);
 }
 
 .animal-info strong {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {

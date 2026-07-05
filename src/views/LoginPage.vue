@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <div class="form">
+    <div class="form card">
       <form @submit.prevent="login">
       <h2>Login</h2>
       <input type="email" v-model="email" placeholder="Email" required />
@@ -12,7 +12,7 @@
         required
       />
       <br>
-      <button type="submit">Login</button>
+      <button type="submit" class="btn btn-primary">Login</button>
     </form>
      <!-- Display Success or Failure Alert -->
      <AlertMessage
@@ -68,37 +68,30 @@ export default {
   display: flex;
   max-width: 400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: var(--space-md);
   justify-self: center;
   align-items: center;
   height: 70vh;
 }
 
 .form {
-  flex:1;
-  border-radius: 8px;
-  background: #f5f5f5;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  flex: 1;
   flex-direction: column;
 }
 
-input,
-button {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+.form h2 {
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  color: var(--color-text);
+}
+
+input {
+  margin: var(--space-sm) 0;
   width: 90%;
 }
 
 button {
-  background-color: #4caf50;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #45a049;
+  margin: var(--space-sm) 0;
+  width: 90%;
 }
 </style>

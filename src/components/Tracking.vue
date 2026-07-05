@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="tracking-page">
     <MapTracker :animals="animals" ref="map" />
   </div>
 </template>
@@ -46,8 +46,10 @@ export default {
 };
 </script>
 
-<style>
-#app {
-  text-align: center;
+<style scoped>
+.tracking-page {
+  padding: var(--space-lg);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 </style>

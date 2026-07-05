@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="demo-page card">
     <h3>Animal Behavior Prediction</h3>
 
     <!-- Prediction Form -->
-    <form @submit.prevent="predictBehavior">
+    <form class="demo-form" @submit.prevent="predictBehavior">
       <input v-model="x" placeholder="Enter x value" />
       <input v-model="y" placeholder="Enter y value" />
       <input v-model="z" placeholder="Enter z value" />
-      <button type="submit">Predict</button>
+      <button type="submit" class="btn btn-primary">Predict</button>
     </form>
 
     <!-- Predicted Behavior -->
@@ -93,16 +93,39 @@ export default {
 </script>
 
 <style scoped>
-/* Style the page for a professional look */
+.demo-page {
+  max-width: 700px;
+  margin: var(--space-lg) auto;
+}
+
+.demo-page h3 {
+  margin-top: 0;
+  color: var(--color-text);
+}
+
+.demo-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.demo-form input {
+  flex: 1;
+  min-width: 120px;
+}
+
 .firebase-data {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f7f7f7;
-  border-radius: 8px;
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  background-color: var(--color-bg);
+  border-radius: var(--radius-md);
 }
 
 h4 {
-  margin-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text);
 }
 
 ul {
@@ -111,7 +134,7 @@ ul {
 }
 
 ul li {
-  margin-bottom: 5px;
-  font-size: 1rem;
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-base);
 }
 </style>

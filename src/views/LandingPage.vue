@@ -9,10 +9,10 @@
       <main>
         <div class="action-buttons">
           <router-link to="/signup">
-            <button class="btn signup-btn">Sign Up</button>
+            <button class="btn btn-primary btn-lg">Sign Up</button>
           </router-link>
           <router-link to="/login">
-            <button class="btn login-btn">Login</button>
+            <button class="btn btn-secondary btn-lg">Login</button>
           </router-link>
         </div>
       </main>
@@ -32,7 +32,7 @@ export default {
 .landing-page {
   display: flex;
   height: 85vh;
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   overflow: hidden;
 }
 
@@ -40,59 +40,37 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 50px;
-  margin: 10px;
-  background-color: #f9f9f9; /* Subtle background color for contrast */
+  justify-content: center;
+  padding: var(--space-xl);
+  margin: var(--space-sm);
+  background-color: var(--color-bg);
   z-index: 2; /* Keep content above the image */
 }
 
 header h1 {
-  font-size: 3.5rem;
-  color: #2c3e50;
-  margin-bottom: 20px;
+  font-size: var(--font-size-2xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
   line-height: 1.2;
   text-align: left;
 }
 
 header p {
-  font-size: 1rem;
-  color: #7f8c8d;
-  margin-bottom: 40px;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xl);
   line-height: 1.5;
   text-align: left;
 }
 
 .action-buttons {
   display: flex;
-  gap: 20px;
+  gap: var(--space-md);
 }
 
-.btn {
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.signup-btn {
-  background-color: #27ae60;
-  color: #fff;
-}
-
-.signup-btn:hover {
-  background-color: #2ecc71;
-}
-
-.login-btn {
-  background-color: #2980b9;
-  color: #fff;
-}
-
-.login-btn:hover {
-  background-color: #3498db;
+.btn-lg {
+  padding: 0.9rem 2rem;
+  font-size: var(--font-size-lg);
 }
 
 /* Image section for blending the image with content */
@@ -103,7 +81,9 @@ header p {
   background-position: center;
   position: relative;
   filter: brightness(0.8); /* Darken the image slightly for readability of text */
-  margin: 10px;
+  margin: var(--space-sm);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 .image-section::after {

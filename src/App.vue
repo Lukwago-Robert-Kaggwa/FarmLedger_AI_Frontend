@@ -8,18 +8,18 @@
       <li class="links"><router-link to="/about">About</router-link></li>
       <li class="links" v-if="isLoggedIn"><router-link to="/home">Home</router-link></li>
       <li v-if="!isLoggedIn">
-        <button class="login-btn">
+        <button class="login-btn btn btn-secondary">
           <router-link to="/login">Login</router-link>
         </button>
       </li>
       <li v-if="!isLoggedIn">
-        <button class="signup-btn">
+        <button class="signup-btn btn btn-primary">
           <router-link to="/signup">Sign up</router-link>
         </button>
       </li>
 
       <li v-if="isLoggedIn">
-        <button class="logout-btn" @click="logout">Logout</button>
+        <button class="logout-btn btn btn-danger" @click="logout">Logout</button>
       </li>
     </ul>
   </nav>
@@ -127,52 +127,36 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-.nav-router-link {
-  margin: 10px;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Arial", sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-}
-
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px;
-  background-color: black;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  background-color: var(--color-primary-dark);
 }
 
 .navbar-brand .brand-name {
-  font-size: 1rem;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
   color: #fff;
   text-decoration: none;
+  letter-spacing: 0.3px;
 }
 
 .navbar-menu {
   list-style: none;
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-sm);
 }
 
 .navbar-menu li {
-  margin-left: 30px;
+  margin-left: var(--space-md);
 }
 
 .links {
@@ -181,21 +165,29 @@ body {
 
 .navbar-menu a {
   text-decoration: none;
-  color: #fff;
-  font-size: 1rem;
-  transition: color 0.3s ease;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--font-size-base);
+  transition: color var(--transition-fast);
 }
 
-.navbar-menu a:hover {
-  color: #ff6347;
+.navbar-menu a:hover,
+.navbar-menu a.router-link-active {
+  color: #fff;
+  font-weight: 600;
+}
+
+.navbar-menu .btn {
+  padding: 0.4rem 1rem;
+  font-size: var(--font-size-sm);
+  box-shadow: none;
 }
 
 .footer {
-  background-color: black;
+  background-color: var(--color-primary-dark);
   color: #fff;
-  padding: 30px 0;
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
   text-align: center;
-  margin-top: 10px;
+  margin-top: var(--space-xl);
 }
 
 .footer-container {
@@ -204,23 +196,27 @@ body {
   flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
+  gap: var(--space-md);
 }
 
 .footer-section {
   flex: 1;
-  margin: 5px;
+  min-width: 180px;
+  margin: var(--space-xs);
 }
 
-.footer-section h2 {
-  font-size: 0.8rem;
-  margin-bottom: 20px;
+.footer-section h3 {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-md);
+  color: #fff;
 }
 
 .footer-section p,
 .footer-section ul,
 .footer-section li {
-  font-size: 0.6rem;
-  margin: 2px 0;
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.75);
+  margin: var(--space-xs) 0;
 }
 
 .footer-section ul {
@@ -229,84 +225,34 @@ body {
 }
 
 .footer-section ul li a {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color var(--transition-fast);
 }
 
 .footer-section ul li a:hover {
-  color: #ff6347;
+  color: #fff;
 }
 
 .footer-bottom {
-  margin-top: 2px;
-  font-size: 0.8rem;
+  width: 100%;
+  order: 2;
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.6);
 }
 
-.logout-btn {
-  background-color: #ff4b5c;
-  /* Primary button color */
-  color: white;
-  border: none;
-  padding: 3px 5px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-md);
+  }
 
-.login-btn {
-  background-color: #3498db;
-  /* Primary button color */
-  color: white;
-  border: none;
-  padding: 3px 5px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.signup-btn {
-  background-color: #27ae60;
-  ;
-  /* Primary button color */
-  color: white;
-  border: none;
-  padding: 3px 5px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-}
-
-.logout-btn:hover {
-  background-color: #ff2a3c;
-  /* Slightly darker on hover */
-  transform: translateY(-2px);
-  /* Lift the button on hover */
-}
-
-.logout-btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(255, 75, 92, 0.5);
-  /* Focus ring effect */
-}
-
-.logout-btn:active {
-  background-color: #e63946;
-  /* Darker when clicked */
-  transform: translateY(1px);
-  /* Slightly depress on click */
-}
-
-.logout-btn:disabled {
-  background-color: #d3d3d3;
-  /* Disabled button color */
-  cursor: not-allowed;
+  .navbar-menu li {
+    margin-left: var(--space-sm);
+  }
 }
 </style>
