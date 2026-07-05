@@ -4,7 +4,7 @@
       <a href="#" class="brand-name">FarmLegder AI</a>
     </div>
     <ul class="navbar-menu">
-      <li class="links"><router-link to="/ledger">Legder</router-link></li>
+      <li class="links"><router-link to="/ledger">Ledger</router-link></li>
       <li class="links"><router-link to="/about">About</router-link></li>
       <li class="links" v-if="isLoggedIn"><router-link to="/home">Home</router-link></li>
       <li v-if="!isLoggedIn">
